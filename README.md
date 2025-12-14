@@ -13,16 +13,6 @@
 A game sessions is 1-1.5 hours for experienced player, or 2-3 for beginners or when learning the game. This is a casual game.
 Each floor is 10-15 minutes. Each stage has 2-4 floors.
 
-# After MVP features - not needed to complete
-
-1. **Stories**
-In between stages there is a dialog and decision scenes
-2. **Skill tree**
-In between stages player can choose passive skills or other customisations
-3. **Settings**
-4. **Cleaning up**
-5. **Tower Defense - Summoning helpers**
-
 
 # Current task list
 **Create an MVP similar to BoI**
