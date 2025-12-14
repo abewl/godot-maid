@@ -1,81 +1,166 @@
-# Project Structure
+# MVP specification
 
-  2D top-down game built with Godot Engine, likely version 4.x given the .gdextension files and typical modern Godot project layout.
+1. Core gameplay Binding of Isaac (BoI)
+2. 2D only for MVP
+2. Player go through dungeon stages to fight enemy. The dungeons are larger than BoI, instead of rooms, it will be floors.
+3. Enemy mechanics 99% similar to BoI, all behaviour and sprites are similar
+4. No shooting
+5. Shooting is replaced with attacks and skill shots/placements.
 
-  Core Godot Files:
+## Additional mechanics
 
-   * project.godot: The main project configuration file. Contains essential settings, autoloads,
-     scene paths, and resource configurations.
-   * export_presets.cfg: Configuration for exporting the game to different platforms (e.g.,
-     Windows, Linux, Android).
-   * icon.svg, icon.svg.import: The project's icon.
-   * test.tscn: A scene file, possibly for testing specific features or mechanics.
-   * Game.exe: An executable, likely a build of the game for Windows.
+1. **Cleaning up**
+2. **Tower Defense - Summoning helpers**
 
-  Standard Godot Directories:
+## Pacing
 
-   * .godot/: This is an internal Godot cache directory. It stores imported assets, shader caches,
-     editor settings, and other temporary files. You generally don't modify files directly in here.
-   * autoload/: Contains global scripts (singletons) that are loaded at project startup and
-     accessible from anywhere in the game.
-       * ConfigUtils.gd: Likely handles game configuration settings.
-       * PlayerData.gd: Probably manages player-specific data like stats, inventory, or progress.
-       * Utils.gd: A general utility script with common functions.
-       * server/: Might contain scripts related to network communication or backend interactions if
-         this game has online features.
-   * audio/: Stores all sound effects and music.
-       * bgm/: Background music files.
-       * bullet/: Bullet firing/impact sounds.
-       * equip/: Equipment-related sounds (e.g., equipping an item).
-       * Various .wav files: Individual sound effects for hits, movement, gunshots, etc.
-   * fonts/: Custom font files used in the UI or game world.
-   * game/: This seems to be the main game logic and scene directory.
-       * BaseFrame.gd: A base script, possibly for defining common behavior for game frames or
-         states.
-       * Game.tscn: The main game scene where the core gameplay takes place.
-       * attachments/, bullets/, equip/, guns/, hero/, items/, map/, monster/, npc/, other/,
-         reward/, survival_effect/, survival_skill/: These subdirectories strongly suggest a
-         modular organization for various game entities and systems. For example, hero/ for player
-         character scripts/scenes, monster/ for enemy definitions, guns/ for weapon mechanics, map/
-         for level data, and items/ for collectible objects.
-   * joystick/: Contains resources for a virtual joystick, likely for touch input on mobile
-     platforms or as an alternative input method.
-   * shader/: Custom shaders used for visual effects.
-       * Monster1.gdshader, Monster1.tres: A shader specific to monsters (e.g., for unique visual
-         effects or highlighting).
-       * SmoothPixel.shader, SmoothPixel.tres: A shader likely used to achieve a smooth pixel art
-         look, possibly for scaling or anti-aliasing.
-   * Sprites/: All image assets (textures, spritesheets).
-   a
-   * translation/: Contains files for game localization.
-       * text.csv: Source for translated text.
-       * text.en.translation, text.zh_CN.translation: Translated text files for English and
-         Simplified Chinese, respectively.
-   * ui/: User Interface scenes and scripts.
-       * ControlUI.gd, ControlUI.tscn: A scene and script for general UI control.
-       * GameUI.gd: Script for the in-game HUD or UI elements.
-       * Inventory.gd, Inventory.tscn: Scene and script for the player's inventory system.
-       * MainUI.gd, MainUI.tscn: The main menu or primary UI scene.
-       * ModeSelect.gd, ModeSelect.tscn: A scene for selecting game modes.
-       * ModUI.gd, ModUI.tscn: UI for modifying items or skills.
-       * SettingUI.gd, SettingUI.tscn: UI for game settings.
-       * theme.tres: The main UI theme resource, defining styles, fonts, and colors.
-       * WeaponAmItem.gd: A script likely for handling weapon and ammunition UI items.
-       * snow/: Possibly UI elements or effects related to snow (e.g., a snowy background for a
-         menu).
-       * widgets/: Reusable UI components.
+A game sessions is 1-1.5 hours for experienced player, or 2-3 for beginners or when learning the game. This is a casual game.
+Each floor is 10-15 minutes. Each stage has 2-4 floors.
 
-  Addons:
-   * addons/: External plugins or modules that extend Godot's functionality.
-       * godotsteam/: An integration for Steamworks API, suggesting the game might use Steam
-         features (achievements, leaderboards, etc.).
-       * nklbdev.aseprite_importers/: An addon for importing Aseprite files directly into Godot,
-         explaining the presence of .ase files in Sprites/.
-       * scene_manager/: A custom scene management addon, possibly for easier transitions between
-         scenes or loading/unloading game states.
+# After MVP features
 
-  Other:
+1. **Stories**
+In between stages there is a dialog and decision scenes
+2. **Skill tree**
+In between stages player can choose passive skills or other customisations
+3. **Settings**
 
-   * .git/, .gitattributes, .gitignore: Git version control files.
-   * README.md: Project description and instructions.
-   * steam_appid.txt: Used for testing Steam integration locally.
+# Current task list
+**Create an MVP similar to BoI**
+Project setup
+/root (git root)
+  /title0 (Godot root)
+    /assets (all graphics and audio assets)
+    /sprites
+    /game
+    /character
+    /stage
+    /ui
+    
+All tasks below includes setting up gdscript, tscn scene file, assigning assets and integrating them together, with no runtime or compile errors. All scripts are modular for imports and extendable for modification, ie: if currently enemy can only chase and damage player by collission, we can add enemy shooting projectile to the current enemy gdscript.
+
+1. **Setup enemy - setup all behaviours similar to BoI enemy**
+  - enemy state machine
+    - idle
+    - patrol
+    - agro
+    - chase
+    - attack (damage by collission)
+    - hit
+    - dead
+  - enemy navigation mesh
+  - enemy sprite including for each state above
+  - enemy attack
+  - enemy hp
+  - enemy spawn (random)
+
+2. **Setup player**
+  - player state machine (extendable for other states)
+    - idle
+    - walk (run)
+    - attack
+    - hit
+    - dead
+    - invul
+    - action (skill 1,2,3,n)
+    - action (special 1,2,3,n)
+  - player attack
+  - player hp
+  - player invul frame and animation (simple blink)
+  - player stats
+    - hp
+    - mp
+    - gold (current)
+  - access to player save profile state  
+  
+3. **Setup objects**  
+  - object spawn (random)
+  - object sprite
+  - object state machine
+    - idle
+    - destroyed
+  - object collision
+    
+3. **Setup stage (single floor)**
+  - Tile Set and Tile Map
+    - assign tile set via gdscript
+  - Tile collision
+  - Wall collision
+  - Navigation2D and NavigationMesh
+  
+4. **Setup camera**
+  - follow player
+  - zoom in and out
+
+5. **Setup controls**
+  - wasd
+  - click to attack
+  - mouse scroll for zoom
+  
+6. **Setup global game state**
+  - Global state
+  - Stage/map state
+    - gold
+    - enemy killed
+  - Player save profiles/states (multiple, JSON)
+  - Save game (state)
+  
+  {
+    "profile_name": "Player1",
+    "level": 5,
+    "score": 12345,
+    "inventory": ["sword", "shield", "potion"],
+    "settings": {
+      "volume": 75,
+      "difficulty": "normal"
+    },
+    "last_save_time": "2025-12-14T15:30:00"
+  }    
+
+6. **Setup UI**
+  - Start
+  - Restart
+  - Save
+  - Exit (close)
+  
+  
+  root
+  │
+  ├── assets/              # All your game assets (textures, sounds, music, etc.)
+  │   ├── characters/
+  │   ├── environment/
+  │   ├── ui/
+  │   ├── tiles/
+  │   └── sounds/
+  │
+  ├── scenes/              # All your game scenes
+  │   ├── main_menu/       # Main menu scenes (start, options, profile selection)
+  │   ├── gameplay/        # Gameplay scenes (gameplay, levels)
+  │   ├── game_over/       # Game over or win scenes
+  │   └── hud/             # HUD-related scenes (UI elements)
+  │
+  ├── scripts/             # All your game scripts
+  │   ├── game_states/     # Game state management scripts
+  │   ├── profiles/        # Player profile scripts (save/load, profile management)
+  │   ├── ui/              # UI management scripts
+  │   ├── player/          # Player character scripts
+  │   ├── enemies/         # Enemy AI scripts
+  │   ├── items/           # Item-related scripts
+  │   └── utils/           # Utility scripts (helpers, constants, etc.)
+  │   └── data/            # Store JSONs
+  │
+  ├── savegames/           # Player profile save files (json, sqlite, etc.)
+  │   ├── profile1.json    # Save file for profile 1
+  │   ├── profile2.json    # Save file for profile 2
+  │   └── settings.json    # Global game settings
+  │
+  └── global/              # Global data and state
+      ├── global.gd        # Global script (e.g., managing singleton or auto-loaded data)
+      └── constants.gd     # Global constants (e.g., game modes, difficulty levels)
+
+Nexts:
+- Audio
+- Save game
+- Inventory
+- Skills
+- Summon
