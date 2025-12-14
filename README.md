@@ -7,23 +7,22 @@
 4. No shooting
 5. Shooting is replaced with attacks and skill shots/placements.
 
-## Additional mechanics
-
-1. **Cleaning up**
-2. **Tower Defense - Summoning helpers**
 
 ## Pacing
 
 A game sessions is 1-1.5 hours for experienced player, or 2-3 for beginners or when learning the game. This is a casual game.
 Each floor is 10-15 minutes. Each stage has 2-4 floors.
 
-# After MVP features
+# After MVP features - not needed to complete
 
 1. **Stories**
 In between stages there is a dialog and decision scenes
 2. **Skill tree**
 In between stages player can choose passive skills or other customisations
 3. **Settings**
+4. **Cleaning up**
+5. **Tower Defense - Summoning helpers**
+
 
 # Current task list
 **Create an MVP similar to BoI**
@@ -31,9 +30,9 @@ In between stages player can choose passive skills or other customisations
 All tasks below includes:
 - uses Godot 4.5
 - setting up gdscript, tscn scene file, assigning assets and integrating them together
-- all scripts are modular for imports and extensible for modification, ie: if currently enemy can only chase and damage player by collission, we can add enemy shooting projectile to the current enemy gdscript.
+- all scripts are modular for imports and extensible for modification, ie: if currently enemy can only chase and damage player by collision, we can add enemy shooting projectile to the current enemy gdscript.
 - setting up placeholder graphics and sprites
-- the project results in a godot 4.5 project with no runtime or compile errors.
+- the work results in a godot 4.5 project with no runtime or compile errors.
 
 1. **Setup enemy - setup all behaviours similar to BoI enemy**
   - enemy state machine
