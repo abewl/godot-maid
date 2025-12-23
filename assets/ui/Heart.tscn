@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgg1t3mmc8txl"]
+
+[ext_resource type="Texture2D" uid="uid://c2i3w0nwx7r4w" path="res://resources/icons/heart.tres" id="1_lkidu"]
+
+[node name="Heart" type="TextureRect"]
+custom_minimum_size = Vector2(16, 16)
+texture = ExtResource("1_lkidu")
+expand_mode = 1
+stretch_mode = 5

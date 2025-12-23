@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ehcv8tt4s8ut"]
+
+[ext_resource type="Script" uid="uid://cxivdyrvg0ebp" path="res://components/states/Chase.gd" id="1_pm8oe"]
+
+[node name="Chase" type="Node"]
+script = ExtResource("1_pm8oe")

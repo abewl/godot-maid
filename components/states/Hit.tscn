@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bap5i0nkfomg0"]
+
+[ext_resource type="Script" uid="uid://dyy0ur3eisxdt" path="res://components/states/Hit.gd" id="1_m0umv"]
+
+[node name="Hit" type="Node"]
+script = ExtResource("1_m0umv")

@@ -1,0 +1,78 @@
+[gd_scene load_steps=16 format=3 uid="uid://j7ieni2souxc"]
+
+[ext_resource type="Script" uid="uid://102y1cy1408a" path="res://characters/enemies/Enemy.gd" id="1_47f7g"]
+[ext_resource type="SpriteFrames" uid="uid://b22gr6r86sp08" path="res://resources/anims/skeleton.tres" id="2_oggmm"]
+[ext_resource type="PackedScene" uid="uid://b6b3cl70v26ev" path="res://components/Hurtbox.tscn" id="2_tsqwt"]
+[ext_resource type="PackedScene" uid="uid://b5tx7kl5xocut" path="res://components/states/StateMachine.tscn" id="4_n6v47"]
+[ext_resource type="PackedScene" uid="uid://ctv3gyh4fbg0v" path="res://components/states/EnemyIdle.tscn" id="5_n6v47"]
+[ext_resource type="PackedScene" uid="uid://ehcv8tt4s8ut" path="res://components/states/Chase.tscn" id="6_h36yp"]
+[ext_resource type="PackedScene" uid="uid://bvyb3m1it0esv" path="res://components/states/Patrol.tscn" id="7_vi68g"]
+[ext_resource type="PackedScene" uid="uid://b0frsmfub0jdg" path="res://components/states/Aggresive.tscn" id="8_5tspa"]
+[ext_resource type="PackedScene" uid="uid://bap5i0nkfomg0" path="res://components/states/Hit.tscn" id="9_g664o"]
+[ext_resource type="PackedScene" uid="uid://d0vikb505jj3w" path="res://components/states/EnemyAttack.tscn" id="11_77q7a"]
+[ext_resource type="PackedScene" uid="uid://bkygp3j0tkpm5" path="res://components/states/Death.tscn" id="12_ewfb7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_47f7g"]
+
+[sub_resource type="Animation" id="Animation_8culk"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_47f7g"]
+resource_name = "hit"
+length = 0.15
+step = 0.05
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8culk"]
+_data = {
+&"RESET": SubResource("Animation_8culk"),
+&"hit": SubResource("Animation_47f7g")
+}
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_47f7g")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 5.0
+max_speed = 0.5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_oggmm")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Hurtbox" parent="." instance=ExtResource("2_tsqwt")]
+collision_layer = 4
+collision_mask = 8
+hp = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_47f7g")
+
+[node name="HitFX" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_8culk")
+}
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state", "root_entity") instance=ExtResource("4_n6v47")]
+initial_state = NodePath("EnemyIdle")
+root_entity = NodePath("..")
+
+[node name="EnemyIdle" parent="StateMachine" instance=ExtResource("5_n6v47")]
+
+[node name="Chase" parent="StateMachine" instance=ExtResource("6_h36yp")]
+
+[node name="Patrol" parent="StateMachine" instance=ExtResource("7_vi68g")]
+
+[node name="Aggresive" parent="StateMachine" instance=ExtResource("8_5tspa")]
+
+[node name="Hit" parent="StateMachine" instance=ExtResource("9_g664o")]
+
+[node name="EnemyAttack" parent="StateMachine" instance=ExtResource("11_77q7a")]
+
+[node name="Death" parent="StateMachine" instance=ExtResource("12_ewfb7")]
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
+[connection signal="zero" from="Hurtbox" to="." method="_on_hurtbox_zero"]

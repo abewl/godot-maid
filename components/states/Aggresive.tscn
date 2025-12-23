@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0frsmfub0jdg"]
+
+[ext_resource type="Script" uid="uid://bg03xfsalls2b" path="res://components/states/Aggresive.gd" id="1_tvxs5"]
+
+[node name="Aggresive" type="Node"]
+script = ExtResource("1_tvxs5")
