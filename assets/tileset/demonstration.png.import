@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdui2aq54imw1"
-path="res://.godot/imported/Dungeon_item_props_v2.png-9c8390976cb0b236d2188600cd322e8f.ctex"
+uid="uid://cjy5bctdk6ddc"
+path="res://.godot/imported/demonstration.png-07da87dc581eeb9f1fcca065bc74ce79.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/character and tileset/Dungeon_item_props_v2.png"
-dest_files=["res://.godot/imported/Dungeon_item_props_v2.png-9c8390976cb0b236d2188600cd322e8f.ctex"]
+source_file="res://assets/tileset/demonstration.png"
+dest_files=["res://.godot/imported/demonstration.png-07da87dc581eeb9f1fcca065bc74ce79.ctex"]
 
 [params]
 
