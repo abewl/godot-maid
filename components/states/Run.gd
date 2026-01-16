@@ -10,7 +10,7 @@ func _ready() -> void:
 	anim_tree = state_machine.root_entity.anim_tree
 
 
-func process_state(delta):
+func process_state(_delta):
 	if state_machine == null:
 		return
 	
@@ -32,6 +32,6 @@ func process_state(delta):
 		
 		state_machine.change_state_by_name('Idle')
 	
-	state_machine.root_entity.velocity = vel * state_machine.root_entity.move_speed
+	state_machine.root_entity.velocity = vel * state_machine.root_entity.config.move_speed
 	
 	state_machine.root_entity.move_and_slide()

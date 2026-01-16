@@ -30,6 +30,6 @@ func process_state(delta):
 		
 		state_machine.change_state_by_name('Idle')
 	
-	state_machine.root_entity.velocity = vel * state_machine.root_entity.move_speed
+	state_machine.root_entity.velocity = vel * state_machine.root_entity.config.move_speed
 	
 	state_machine.root_entity.move_and_slide()

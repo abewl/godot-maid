@@ -1,24 +1,29 @@
 extends CharacterBody2D
 class_name Player
+@export var config: PlayerConfig
 
 
 var direction = Vector2.ZERO
-var move_speed = 100.0
 
 @onready var anim_tree = $AnimationTree
 @onready var state_machine: StateMachine = $StateMachine
 @onready var hitcast = $Aim/Hitcast
 @onready var hurtbox = $Hurtbox
 
-var mp = 25
-var gold = 100
-var hp_max = 6
 
+var hp: int
+var mp: int
+var gold: int
 var can_move = true
 
 func _ready() -> void:
+
 	ManagerGame.global_player_ref = self
-	hurtbox.hp = hp_max
+	
+	hp = config.max_health
+	mp = config.max_mana
+	gold = config.initial_gold
+	hurtbox.hp = hp
 
 
 func _physics_process(delta: float) -> void:
