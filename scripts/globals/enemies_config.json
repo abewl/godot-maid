@@ -1,0 +1,25 @@
+{
+  "enemy_types": [
+    {
+      "type": "basic_enemy",
+      "scene": "res://characters/enemies/Enemy.tscn",
+      "spawn": "random",
+      "count": 6
+    },
+    {
+      "type": "flying_enemy",
+      "scene": "res://characters/enemies/Enemy.tscn",
+      "spawn": "random",
+      "count": 2
+    },
+    {
+      "type": "tank_enemy",
+      "scene": "res://characters/enemies/Enemy.tscn",
+      "spawn": "fixed",
+      "enemies": [
+        { "id": 9, "position": { "x": 200, "y": 0 } },
+        { "id": 10, "position": { "x": 250, "y": 0 } }
+      ]
+    }
+  ]
+}

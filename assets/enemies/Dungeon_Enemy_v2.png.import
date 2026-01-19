@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dt7oydromsgw8"
-path="res://.godot/imported/Dungeon_Enemy_v2.png-908339a2dfc44e1d9ec48d5dbaf2edd1.ctex"
+path="res://.godot/imported/Dungeon_Enemy_v2.png-e5df74e9067ed67aeda1c9d1fffe2c3e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/character and tileset/Dungeon_Enemy_v2.png"
-dest_files=["res://.godot/imported/Dungeon_Enemy_v2.png-908339a2dfc44e1d9ec48d5dbaf2edd1.ctex"]
+source_file="res://assets/enemies/Dungeon_Enemy_v2.png"
+dest_files=["res://.godot/imported/Dungeon_Enemy_v2.png-e5df74e9067ed67aeda1c9d1fffe2c3e.ctex"]
 
 [params]
 
